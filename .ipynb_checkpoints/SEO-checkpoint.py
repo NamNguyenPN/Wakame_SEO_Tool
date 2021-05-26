@@ -138,7 +138,7 @@ class SEO:
             pass
         
     def toContent(self,num):
-        n=rd.randint(5,num)
+        n=rd.randint(1,num)
         if(n>4):
             self.sc_down()
             try:
