@@ -25,9 +25,8 @@ class SEO:
             self.driver.get("https://www.google.com")
         else:
             self.driver.get(object)
-    def back(self):
-        
-        self.driver.back()        
+#    def back(self):        
+#        self.driver.back()        
     def quit(self):
         if(self.driver!=None):
             self.driver.quit()
@@ -74,7 +73,7 @@ class SEO:
                     next=self.driver.find_element(By.XPATH,n_p)
                     next.click()                
             except:
-                print("Failed")
+                print("rank Failed")
             
         print("Ngoài top 10 trong tìm kiếm Google")
         return None,None
@@ -89,19 +88,27 @@ class SEO:
             
     def toTop(self):
         self.driver.implicitly_wait(100)
-        back_top_path='//*[@id="back-top"]/a'
-        back_top=self.driver.find_element(By.XPATH,back_top_path)
-        back_top.click()
+        try:
+            back_top_path='//*[@id="back-top"]/a'
+            back_top=self.driver.find_element(By.XPATH,back_top_path)
+            back_top.click()
+        except:
+            print("toTop Failed")
         
-    def read(self):
+    def read(self,speed):
+        if speed == None:
+            spd = 0.008
+        else:
+            spd= speed
         try:
             self.driver.implicitly_wait(100)
             height=self.driver.execute_script("return document.body.scrollHeight")
             for i in range(0,height):
                 script="window.scrollTo(0,"+str(i)+")"
                 self.driver.execute_script(script)
-                self.delay(0.005)
+                self.delay(spd)
         except :
+            print("read Failed")
             pass
 
     def Home(self):
@@ -111,6 +118,7 @@ class SEO:
             home=self.driver.find_element(By.XPATH,home_path)
             home.click()
         except :
+            print("Home Failed")
             pass
     
     def News(self):
@@ -120,7 +128,7 @@ class SEO:
             news=self.driver.find_element(By.XPATH,news_path)
             news.click()
         except :
-            print("To News Fail")
+            print("News Failed")
             pass
     
     def search_box(self,key_words):
@@ -134,7 +142,7 @@ class SEO:
                 self.delay(speed)
             search_box.send_keys(Keys.ENTER)
         except :
-            print("Search_box fail")
+            print("search_box Failed")
             pass
         
     def toContent(self,num):
@@ -147,7 +155,7 @@ class SEO:
                     nex=self.driver.find_element(By.XPATH,ne)
                     nex.click()
             except:
-                print("to next fail")
+                print("next page Failed")
                 pass
                 
         if(n%4!=0):
@@ -158,14 +166,17 @@ class SEO:
             h=self.driver.find_element_by_xpath(p)  
             h.click()         
         except:
-            print("To Contetn Faild")
+            print("toContent Failed")
             pass
         
     def Courses(self):
-        self.driver.implicitly_wait(300)
-        courses_path='//*[@id="navigation"]/li[2]/a'
-        courses=self.driver.find_element(By.XPATH,courses_path)
-        courses.click()
+        try:
+            self.driver.implicitly_wait(300)
+            courses_path='//*[@id="navigation"]/li[2]/a'
+            courses=self.driver.find_element(By.XPATH,courses_path)
+            courses.click()
+        except :
+            print("Courses Failed")
     
     def About(self):
         try:
@@ -174,6 +185,6 @@ class SEO:
             aboutus=self.driver.find_element(By.XPATH,aboutus_path)
             aboutus.click()
         except:
-            print("To About Fail")
+            print("About Failed")
             pass
         

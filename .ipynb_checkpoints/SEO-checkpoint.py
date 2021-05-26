@@ -25,9 +25,8 @@ class SEO:
             self.driver.get("https://www.google.com")
         else:
             self.driver.get(object)
-    def back(self):
-        
-        self.driver.back()        
+#    def back(self):        
+#        self.driver.back()        
     def quit(self):
         if(self.driver!=None):
             self.driver.quit()
@@ -93,14 +92,18 @@ class SEO:
         back_top=self.driver.find_element(By.XPATH,back_top_path)
         back_top.click()
         
-    def read(self):
+    def read(self,speed):
+        if speed == None:
+            spd = 0.008
+        else:
+            spd= speed
         try:
             self.driver.implicitly_wait(100)
             height=self.driver.execute_script("return document.body.scrollHeight")
             for i in range(0,height):
                 script="window.scrollTo(0,"+str(i)+")"
                 self.driver.execute_script(script)
-                self.delay(0.005)
+                self.delay(spd)
         except :
             pass
 
