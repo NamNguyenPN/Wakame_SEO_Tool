@@ -100,7 +100,7 @@ class SEO:
             for i in range(0,height):
                 script="window.scrollTo(0,"+str(i)+")"
                 self.driver.execute_script(script)
-                self.delay(0.08)
+                self.delay(0.001)
         except :
             pass
 
@@ -138,6 +138,17 @@ class SEO:
         
     def toContent(self,num):
         n=rd.randint(1,num)
+        if(n>4):
+            self.sc_down()
+            try:
+                for i in range(0,n//4):
+                    ne='/html/body/main/section[2]/div/div/div[1]/div/nav/ul/li['+str(n//4 +4)+']/a'
+                    nex=self.driver.find_element(By.XPATH,ne)
+                    nex.click()
+            except:
+                print("to next fail")
+                pass
+                
         if(n%4!=0):
             p='/html/body/main/section[2]/div/div/div[1]/div/article['+str(n%4)+']/div[2]/a'
         else:
