@@ -126,7 +126,7 @@ class IP_MAC(MAC,IP):
                 except:
                     pass
             count=count+1
-            if(count==2000):
+            if(count==50000):
                 flag=False
         try:
             time.sleep(1)
@@ -154,13 +154,15 @@ class IP_MAC(MAC,IP):
                 except:
                     pass
             count=count+1
-            if(count==2000):
+            if(count==50000):
+                print("")
                 flag=False
         try:
             time.sleep(1)
             urllib.request.urlopen('https://www.google.com')
             print("Internet has connected")
         except:
+            print("Kết nối thất bại")
             print(1/0)
     def get_IP(self):
         return self.ip.newIP
