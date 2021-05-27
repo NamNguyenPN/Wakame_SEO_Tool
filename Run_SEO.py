@@ -158,7 +158,7 @@ KEYWORDS=["Clb Wakame","wakame uit","uit wakame","luyện thi jlpt wakame UIT",
 #Tổng số bài đăng trên web hiện tại
 MAX=7
 #Số lần thực hiện truy cập trang web
-sl_truycap=5
+sl_truycap=2
 
 #Khoảng thời gian dừng ở lại trang (không làm gì) từ 5s tới 20s tùy mọi setup
 WAIT=[10,30]
@@ -180,7 +180,7 @@ for i in range(sl_truycap):
         
         #Search từ khóa
         a.delay(5)
-        a.chrome(None)
+        a.edge(None)
         a.delay(5)
         keywords=KEYWORDS[rd.randint(0,len(KEYWORDS)-1)]
         #keywords='các khóa học wakame'

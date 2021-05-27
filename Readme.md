@@ -1,21 +1,17 @@
-# **WAKAME TOOL SEO V2**
-## **Tính năng mới trên V2**
-- **SEO với từ khóa thương mại (nếu từ khóa đó lọt top 20)**
-- **Fix lỗi mất kết nối Internet khi thay đổi địa chỉ MAC và địa chỉ IP.**
-- **Thêm các thông báo việc thực hiện thao tác nào đó thất bại.**
-- **Quy định các trường hợp khiến SEO thất bại.**
-- **Đã có thể tùy chỉnh tốc độ đọc cho hàm SEO.read().**
-- **Thêm hàm SEO.toContent(). Là hàm lựa chọn bài báo khi vô trang Tin tức.**
-- **Gỡ bỏ hàm SEO.back()**
+# **WAKAME TOOL SEO V2.5**
+## **Giới thiệu**
+Là công cụ để SEO Website của Câu lạc bộ Tiếng Nhật Wakame [https://wakame-uit.online](https://wakame-uit.online)
+## **Tính năng mới trên V2.5**
+- **Thêm SEO với công cụ Microsoft Edge**
+- **Fix lỗi "Passthrough not support, GL is disable"**
 
-**Tính năng mới có thể thử nghiệm trực tiếp trên file Test_Dev_SEO.ipynb**
 ## **Môi trường chạy**
 Chạy trên hệ điều hành Windows có cài đặt Anaconda hoặc Python3.7.
 Cần chương trình Google Chrome v90.0.4 để thực hiện SEO
 ## **Hướng dẫn cài đặt**
 Lệnh cài đặt các gói cần thiết cho việc SEO
 ```bash
-pip install selenium, wmi, netifaces 
+pip install selenium, wmi, netifaces, msedge-selenium-tools
 ```
 
 ## **Hướng dẫn chạy tool SEO**

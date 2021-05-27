@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait as WDW
 from selenium.webdriver.chrome.service import Service
+from msedge.selenium_tools import Edge,EdgeOptions
 import time
 import random as rd
 
@@ -15,7 +16,10 @@ class SEO:
     def delay(self,times):
         time.sleep(times)
     def edge(self,object):
-        self.driver=webdriver.Edge(executable_path="msedgedriver.exe")
+        options=EdgeOptions()
+        options.use_chromium=True
+        options.add_argument("disable-gpu")
+        self.driver=Edge(options=options)
         self.driver.maximize_window()
         self.driver.get("https://www.google.com")
     def chrome(self,object): 
