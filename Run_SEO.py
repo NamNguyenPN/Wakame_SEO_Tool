@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 # TRƯỚC TIÊN HÃY CÀI CÁC GÓI PACKAGES SAU ĐÂY BẰNG LỆNH DƯỚI ĐÂY #
@@ -125,7 +125,7 @@
 #         aboutus_path='//*[@id="navigation"]/li[5]/a'
 #         aboutus=self.driver.find_element(By.XPATH,aboutus_path)
 #         aboutus.click()
-# In[1]:
+# In[2]:
 
 
 import pandas as pd
@@ -135,7 +135,7 @@ from change_ip_mac import IP_MAC
 from SEO import SEO
 
 
-# In[2]:
+# In[3]:
 
 
 # TRƯỚC TIÊN HÃY CÀI CÁC GÓI PACKAGES SAU ĐÂY BẰNG DƯỚI ĐÂY #
@@ -146,23 +146,22 @@ a=SEO()
 fake=IP_MAC()
 report=pd.DataFrame(columns=[
     'Lần', 'Trạng thái', 'Địa chỉ IP', 
-    'Địa chỉ MAC','Thời gian SEO',
+    'Địa chỉ MAC','Thời gian SEO',"Key_words"
 ])
 ########################
 
 
 #Danh sách từ khóa (thương hiệu, thương mại)
-KEYWORDS=["Clb Wakame","wakame uit","luyện thi jlpt wakame",
-          'tin tức Wakame','các khóa học của wakame',
-          
+KEYWORDS=["Clb Wakame","wakame uit","uit wakame","luyện thi jlpt wakame UIT",
+          "tin tức Wakame","các khóa học của wakame"
          ]
 #Tổng số bài đăng trên web hiện tại
-MAX=4
+MAX=7
 #Số lần thực hiện truy cập trang web
-sl_truycap=1 
+sl_truycap=2
 
 #Khoảng thời gian dừng ở lại trang (không làm gì) từ 5s tới 20s tùy mọi setup
-WAIT=[5,20]
+WAIT=[10,30]
 
 #Random thời gian
 def t():
@@ -173,6 +172,7 @@ def t():
 
 
 for i in range(sl_truycap):
+    keywords="-----------"
     try:
         #Thay đổi IP và MAC
         fake.__init__()
@@ -181,9 +181,12 @@ for i in range(sl_truycap):
         #Search từ khóa
         a.delay(5)
         a.chrome(None)
-        keywords=KEYWORDS[rd.randint(0,len(KEYWORDS))]
+        a.delay(5)
+        keywords=KEYWORDS[rd.randint(0,len(KEYWORDS)-1)]
+        #keywords='các khóa học wakame'
+        print(keywords)
         a.search(keywords) #Random từ khóa ngẫu nhiên
-        #a.delay(5)
+        a.delay(5)
         #a.search("Luyện thi JLPT Wakame")
         
         #Phần thao tác trên cửa trang tìm kiếm (Option)
@@ -196,40 +199,78 @@ for i in range(sl_truycap):
         
         st=time.time()    
         #Phần thao tác trên trang Wakame
+        a.delay(5)
+        
         a.sc_down()
         
-        a.delay(5)
+        a.delay(t())
         
         a.toTop()
         
-        a.delay(5)
+        a.delay(t())
 
-        a.News()         # Đi tới trang Tin tức
+        a.Home()         # Đi tới trang Tin tức
         
         a.sc_down()
-
-        a.search_box("SEO 10 điểm") #Chỉ thực hiện được khi đã ở trang Tin tức
+        
+        a.delay(5)
+        
+        a.News()
         
         a.delay(5)
 
-        a.back()         # Quay lại trang trước
+        a.search_box("Văn hóa") #Chỉ thực hiện được khi đã ở trang Tin tức
         
-        a.delay(2)
+        a.delay(5)
+
+        a.News()         # Quay lại trang trước
         
-        a.sc_up()
+        a.delay(t())
         
         a.toContent(MAX) # Chọn bài báo ngẫu nhiên để click (chỉ khi ở trang Tin tức)
         
-        a.read()
+        a.read(0.01)
         
-        a.delay(5)
+        a.delay(t())
+        
+        a.News()
+        
+        a.delay(t())
+        
+        a.toContent(MAX)
+        
+        a.read(0.01)
+        
+        a.toTop()
+        
+        a.delay(t())
         #### Kết thúc SEO ##
+        fake.is_connect()
+        
         a.quit()
         print("\n#### SEO lần",i+1,"thành công ####\n")
-        report.loc[i]=[i+1,"Success",fake.get_IP(),fake.get_MAC(),str(datetime.timedelta(seconds=time.time()-st))]
-        
+                
+        report.loc[i]=[i+1,"Success",fake.get_IP(),fake.get_MAC(),str(datetime.timedelta(seconds=time.time()-st)),keywords]
     except:
         a.quit()
-        report.loc[i]=[i+1,"Failed","---.---.---.---","--.--.--.--.--.--","--:--:--"]
+        report.loc[i]=[i+1,"Failed","---.---.---.---","--.--.--.--.--.--","--:--:--",keywords]
         print("\n#### SEO lần",i+1,"thất bại ####\n")
+
+
+# In[5]:
+
+
+report
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
