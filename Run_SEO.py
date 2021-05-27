@@ -158,7 +158,7 @@ KEYWORDS=["Clb Wakame","wakame uit","uit wakame","luyện thi jlpt wakame UIT",
 #Tổng số bài đăng trên web hiện tại
 MAX=7
 #Số lần thực hiện truy cập trang web
-sl_truycap=2
+sl_truycap=5
 
 #Khoảng thời gian dừng ở lại trang (không làm gì) từ 5s tới 20s tùy mọi setup
 WAIT=[10,30]

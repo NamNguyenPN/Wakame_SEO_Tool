@@ -18,8 +18,10 @@ class SEO:
         self.driver=webdriver.Edge(executable_path="msedgedriver.exe")
         self.driver.maximize_window()
         self.driver.get("https://www.google.com")
-    def chrome(self,object):            
-        self.driver=webdriver.Chrome()
+    def chrome(self,object): 
+        options = webdriver.ChromeOptions()
+        options.add_argument("--disable-gpu")          
+        self.driver=webdriver.Chrome(options=options)
         self.driver.maximize_window()
         if object == None:
             self.driver.get("https://www.google.com")
@@ -119,8 +121,9 @@ class SEO:
             pass
 
     def Home(self):
+        self.driver.implicitly_wait(300)
         try:
-            self.driver.implicitly_wait(300)
+            
             home_path='//*[@id="navigation"]/li[1]/a'
             home=self.driver.find_element(By.XPATH,home_path)
             home.click()
